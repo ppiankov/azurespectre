@@ -1,0 +1,54 @@
+{
+  "virtual_machine": {
+    "standard_b1s":    {"eastus": 0.0104, "eastus2": 0.0104, "westus2": 0.0104, "westeurope": 0.0117, "southeastasia": 0.0120},
+    "standard_b2s":    {"eastus": 0.0416, "eastus2": 0.0416, "westus2": 0.0416, "westeurope": 0.0468, "southeastasia": 0.0480},
+    "standard_b1ms":   {"eastus": 0.0207, "eastus2": 0.0207, "westus2": 0.0207, "westeurope": 0.0233, "southeastasia": 0.0240},
+    "standard_b2ms":   {"eastus": 0.0832, "eastus2": 0.0832, "westus2": 0.0832, "westeurope": 0.0936, "southeastasia": 0.0960},
+    "standard_b4ms":   {"eastus": 0.1660, "eastus2": 0.1660, "westus2": 0.1660, "westeurope": 0.1870, "southeastasia": 0.1920},
+    "standard_d2s_v5": {"eastus": 0.0960, "eastus2": 0.0960, "westus2": 0.0960, "westeurope": 0.1100, "southeastasia": 0.1120},
+    "standard_d4s_v5": {"eastus": 0.1920, "eastus2": 0.1920, "westus2": 0.1920, "westeurope": 0.2200, "southeastasia": 0.2240},
+    "standard_d8s_v5": {"eastus": 0.3840, "eastus2": 0.3840, "westus2": 0.3840, "westeurope": 0.4400, "southeastasia": 0.4480},
+    "standard_d2as_v5":{"eastus": 0.0860, "eastus2": 0.0860, "westus2": 0.0860, "westeurope": 0.0990, "southeastasia": 0.1010},
+    "standard_d4as_v5":{"eastus": 0.1720, "eastus2": 0.1720, "westus2": 0.1720, "westeurope": 0.1980, "southeastasia": 0.2020},
+    "standard_e2s_v5": {"eastus": 0.1260, "eastus2": 0.1260, "westus2": 0.1260, "westeurope": 0.1440, "southeastasia": 0.1470},
+    "standard_e4s_v5": {"eastus": 0.2520, "eastus2": 0.2520, "westus2": 0.2520, "westeurope": 0.2880, "southeastasia": 0.2940},
+    "standard_e8s_v5": {"eastus": 0.5040, "eastus2": 0.5040, "westus2": 0.5040, "westeurope": 0.5760, "southeastasia": 0.5880},
+    "standard_f2s_v2": {"eastus": 0.0850, "eastus2": 0.0850, "westus2": 0.0850, "westeurope": 0.0970, "southeastasia": 0.0990},
+    "standard_f4s_v2": {"eastus": 0.1690, "eastus2": 0.1690, "westus2": 0.1690, "westeurope": 0.1930, "southeastasia": 0.1970},
+    "standard_f8s_v2": {"eastus": 0.3380, "eastus2": 0.3380, "westus2": 0.3380, "westeurope": 0.3870, "southeastasia": 0.3950},
+    "standard_ds1_v2": {"eastus": 0.0570, "eastus2": 0.0570, "westus2": 0.0570, "westeurope": 0.0650, "southeastasia": 0.0660},
+    "standard_ds2_v2": {"eastus": 0.1140, "eastus2": 0.1140, "westus2": 0.1140, "westeurope": 0.1300, "southeastasia": 0.1330},
+    "standard_ds3_v2": {"eastus": 0.2280, "eastus2": 0.2280, "westus2": 0.2280, "westeurope": 0.2610, "southeastasia": 0.2660},
+    "standard_a2_v2":  {"eastus": 0.0430, "eastus2": 0.0430, "westus2": 0.0430, "westeurope": 0.0490, "southeastasia": 0.0500}
+  },
+  "managed_disk": {
+    "standard_lrs":    {"eastus": 0.040, "eastus2": 0.040, "westus2": 0.040, "westeurope": 0.044, "southeastasia": 0.048},
+    "standardssd_lrs": {"eastus": 0.075, "eastus2": 0.075, "westus2": 0.075, "westeurope": 0.083, "southeastasia": 0.090},
+    "premium_lrs":     {"eastus": 0.135, "eastus2": 0.135, "westus2": 0.135, "westeurope": 0.149, "southeastasia": 0.162},
+    "premiumv2_lrs":   {"eastus": 0.135, "eastus2": 0.135, "westus2": 0.135, "westeurope": 0.149, "southeastasia": 0.162},
+    "ultrassd_lrs":    {"eastus": 0.180, "eastus2": 0.180, "westus2": 0.180, "westeurope": 0.198, "southeastasia": 0.216}
+  },
+  "public_ip": {
+    "default": {"eastus": 3.65, "eastus2": 3.65, "westus2": 3.65, "westeurope": 3.65, "southeastasia": 3.65}
+  },
+  "snapshot": {
+    "default": {"eastus": 0.05, "eastus2": 0.05, "westus2": 0.05, "westeurope": 0.055, "southeastasia": 0.060}
+  },
+  "load_balancer": {
+    "default": {"eastus": 18.25, "eastus2": 18.25, "westus2": 18.25, "westeurope": 20.08, "southeastasia": 21.90}
+  },
+  "sql_database": {
+    "basic":          {"eastus": 4.99,   "eastus2": 4.99,   "westus2": 4.99,   "westeurope": 5.49,   "southeastasia": 5.99},
+    "standard_s0":    {"eastus": 15.03,  "eastus2": 15.03,  "westus2": 15.03,  "westeurope": 16.53,  "southeastasia": 18.04},
+    "standard_s1":    {"eastus": 30.05,  "eastus2": 30.05,  "westus2": 30.05,  "westeurope": 33.06,  "southeastasia": 36.06},
+    "standard_s2":    {"eastus": 75.13,  "eastus2": 75.13,  "westus2": 75.13,  "westeurope": 82.64,  "southeastasia": 90.16},
+    "premium_p1":     {"eastus": 465.00, "eastus2": 465.00, "westus2": 465.00, "westeurope": 511.50, "southeastasia": 558.00},
+    "generalpurpose": {"eastus": 0.2091, "eastus2": 0.2091, "westus2": 0.2091, "westeurope": 0.2300, "southeastasia": 0.2510}
+  },
+  "app_service": {
+    "default": {"eastus": 54.75, "eastus2": 54.75, "westus2": 54.75, "westeurope": 60.23, "southeastasia": 65.70}
+  },
+  "storage_account": {
+    "default": {"eastus": 5.00, "eastus2": 5.00, "westus2": 5.00, "westeurope": 5.50, "southeastasia": 6.00}
+  }
+}
