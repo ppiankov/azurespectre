@@ -3,6 +3,7 @@ package commands
 import (
 	"bytes"
 	"fmt"
+	"os"
 	"strings"
 	"testing"
 
@@ -143,12 +144,82 @@ func TestEnhanceError(t *testing.T) {
 }
 
 func TestInitCommand(t *testing.T) {
-	_ = t.TempDir()
+	dir := t.TempDir()
+	origDir, _ := os.Getwd()
+	defer func() { _ = os.Chdir(origDir) }()
+	_ = os.Chdir(dir)
 
-	// We can't easily test init without changing directory,
-	// but we can verify the command exists
-	if initCmd.Use != "init" {
-		t.Error("init command not found")
+	err := runInit(nil, nil)
+	if err != nil {
+		t.Fatalf("runInit() error: %v", err)
+	}
+
+	if _, err := os.Stat(".azurespectre.yaml"); os.IsNotExist(err) {
+		t.Error(".azurespectre.yaml not created")
+	}
+	if _, err := os.Stat("azurespectre-role.json"); os.IsNotExist(err) {
+		t.Error("azurespectre-role.json not created")
+	}
+}
+
+func TestInitCommand_AlreadyExists(t *testing.T) {
+	dir := t.TempDir()
+	origDir, _ := os.Getwd()
+	defer func() { _ = os.Chdir(origDir) }()
+	_ = os.Chdir(dir)
+
+	_ = os.WriteFile(".azurespectre.yaml", []byte("existing"), 0o644)
+
+	err := runInit(nil, nil)
+	if err != nil {
+		t.Fatalf("runInit() error: %v", err)
+	}
+
+	data, _ := os.ReadFile(".azurespectre.yaml")
+	if string(data) != "existing" {
+		t.Error("should not overwrite existing config")
+	}
+}
+
+func TestApplyConfigDefaults(t *testing.T) {
+	origSub := cfg.Subscription
+	origRG := cfg.ResourceGroup
+	origFmt := cfg.Format
+	defer func() {
+		cfg.Subscription = origSub
+		cfg.ResourceGroup = origRG
+		cfg.Format = origFmt
+		scanFlags.subscription = ""
+		scanFlags.resourceGroup = ""
+		scanFlags.format = "text"
+	}()
+
+	cfg.Subscription = "from-config"
+	cfg.ResourceGroup = "rg-from-config"
+	cfg.Format = "json"
+	scanFlags.subscription = ""
+	scanFlags.resourceGroup = ""
+	scanFlags.format = "text"
+
+	applyConfigDefaults()
+
+	if scanFlags.subscription != "from-config" {
+		t.Errorf("subscription = %q, want %q", scanFlags.subscription, "from-config")
+	}
+	if scanFlags.resourceGroup != "rg-from-config" {
+		t.Errorf("resourceGroup = %q, want %q", scanFlags.resourceGroup, "rg-from-config")
+	}
+	if scanFlags.format != "json" {
+		t.Errorf("format = %q, want %q", scanFlags.format, "json")
+	}
+}
+
+func TestIndexByte(t *testing.T) {
+	if indexByte("key=value", '=') != 3 {
+		t.Error("expected index 3")
+	}
+	if indexByte("noequals", '=') != -1 {
+		t.Error("expected -1")
 	}
 }
 

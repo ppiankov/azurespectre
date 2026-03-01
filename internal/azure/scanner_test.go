@@ -93,3 +93,31 @@ func TestSubscriptionScanner_Empty(t *testing.T) {
 		t.Errorf("findings = %d, want 0", len(result.Findings))
 	}
 }
+
+func TestSubscriptionScanner_WithOptionalAPIs(t *testing.T) {
+	compute := &mockComputeAPI{}
+	network := &mockNetworkAPI{}
+	monitor := &mockMonitorAPI{}
+
+	scanner := NewSubscriptionScanner(compute, network, monitor, "sub-1", ScanConfig{})
+	scanner.SetSQLAPI(&mockSQLAPI{})
+	scanner.SetAppServiceAPI(&mockAppServiceAPI{})
+	scanner.SetStorageAPI(&mockStorageAPI{})
+
+	var progress []ScanProgress
+	scanner.SetProgressFn(func(p ScanProgress) {
+		progress = append(progress, p)
+	})
+
+	result, err := scanner.ScanAll(context.Background())
+	if err != nil {
+		t.Fatalf("ScanAll() error: %v", err)
+	}
+	if len(result.Findings) != 0 {
+		t.Errorf("findings = %d, want 0", len(result.Findings))
+	}
+	// 6 base + 3 optional = 9 scanners
+	if len(progress) != 9 {
+		t.Errorf("progress callbacks = %d, want 9", len(progress))
+	}
+}
